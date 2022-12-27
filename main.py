@@ -48,6 +48,7 @@ def add_user():
 
 @app.route('/users', methods=['DELETE'])
 def del_user():
+    get_users()
     for i in data:
         if request.get_json()['id'] == i['id']:
             sql = 'DELETE FROM public.users WHERE id=%s;'
@@ -62,6 +63,7 @@ def del_user():
 
 @app.route('/users', methods=['PUT'])
 def update_user():
+    get_users()
     for i in data:
         if request.get_json()['id'] == i['id']:
             sql = "UPDATE public.users SET id = %s, name =%s, surname =%s WHERE id = %s;"
